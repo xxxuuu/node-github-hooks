@@ -30,7 +30,7 @@
     - `clone_path`：clone 到的本地地址，默认值为 `repos`，则项目 a 会 clone 到运行目录下的 `repos/a`
     - `listen_port`：服务端监听端口
     - `secret_token`：加密密钥，为保证安全、务必设置
-    - `repo`：仓库，只有在这配置过的仓库才会作相应，没有配置的仓库就算接收到 Github Webhooks 也不作处理
+    - `repo`：仓库，只有在这配置过的仓库才会作响应，没有配置的仓库就算接收到 hook 也不作处理
         - repo 下为 `仓库名:配置`
         - `branch`：从该仓库拉取的分支
         - `shell`：拉取完后执行的 shell，可空
