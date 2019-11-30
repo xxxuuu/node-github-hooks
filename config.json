@@ -1,0 +1,11 @@
+{
+  "clone_path": "repos",
+  "listen_port": 80,
+  "secret_token": "token",
+  "repo": {
+    "xxxuuu.github.io": {
+      "branch": "master",
+      "shell": "./run.sh"
+    }
+  }
+}
