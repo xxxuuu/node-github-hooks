@@ -1,6 +1,6 @@
-# Node-github-hooks
+# node-github-hooks
 
-使用 Node.js 实现的简易的 Github Webhooks 服务端
+使用 Node.js 实现的简易 Github Webhooks 服务端
 
 
 
@@ -29,7 +29,7 @@
 
     - `clone_path`：clone 到的本地地址，默认值为 `repos`，则项目 a 会 clone 到运行目录下的 `repos/a`
     - `listen_port`：服务端监听端口
-    - `secret_token`：加密密钥，为保证安全、务必设置
+    - `secret_token`：加密密钥，为保证安全、务必设置且不要泄露
     - `repo`：仓库，只有在这配置过的仓库才会作响应，没有配置的仓库就算接收到 hook 也不作处理
         - repo 下为 `仓库名:配置`
         - `branch`：从该仓库拉取的分支
