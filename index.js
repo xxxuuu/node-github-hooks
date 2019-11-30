@@ -59,7 +59,7 @@ let cloneRepo = async function(clonePath, cloneUrl, repoName, branch) {
     try {
         fs.statSync(repoPath + '/.git/').isDirectory()
     } catch (e) {
-        await simpleExec('git clone '  + cloneUrl + ' ' + repoPath);
+        await simpleExec('git clone -b ' + branch + ' ' + cloneUrl + ' ' + repoPath);
         return;
     }
     await simpleExec(pullCommand);
