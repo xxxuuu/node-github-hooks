@@ -32,7 +32,7 @@
     - `secret_token`：加密密钥，为保证安全、务必设置
     - `repo`：仓库，只有在这配置过的仓库才会作相应，没有配置的仓库就算接收到 Github Webhooks 也不作处理
         - repo 下为 `仓库名:配置`
-        - `brach`：从该仓库拉取的分支
+        - `branch`：从该仓库拉取的分支
         - `shell`：拉取完后执行的 shell，可空
 
 3. 使用 `npm run server` 运行
