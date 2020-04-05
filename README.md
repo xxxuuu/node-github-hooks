@@ -35,7 +35,9 @@
         - `branch`：从该仓库拉取的分支
         - `shell`：拉取完后执行的 shell，可空
 
-3. 使用 `npm run server` 运行
+3. 开发环境使用 `npm run server` 运行
 
-4. 在 Github 仓库 -> Settings -> Webhooks 中 Add webhook 并配置
+4. 生产环境使用 `npm run pro` 运行（需先安装pm2：`npm install -g pm2`）
+
+5. 在 Github 仓库 -> Settings -> Webhooks 中 Add webhook 并配置
 

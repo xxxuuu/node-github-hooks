@@ -4,7 +4,8 @@
   "description": "simple github webhooks server",
   "main": "index.js",
   "scripts": {
-    "server": "node index.js"
+    "server": "node index.js",
+    "pro": "pm2 start index.js -o ./success.log -e ./error.log"
   },
   "author": "XUQING",
   "license": "MIT"
