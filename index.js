@@ -69,7 +69,7 @@ let cloneRepo = async function(clonePath, cloneUrl, repoName, branch) {
 initConfig();
 http.createServer((req, res) => {
     if(req.method !== 'POST') {
-        return;
+        res.end();
     }
 
     let dataList = [];
@@ -90,12 +90,12 @@ http.createServer((req, res) => {
 
         // 校验密钥
         if(secret !== ('sha1='+ sha1(data, config['secret_token']))) {
-            return;
+            res.end();
         }
 
         // 配置中没有这个仓库
         if(!config.repo[repoName]) {
-            return;
+            res.end();
         }
 
         (async () => {
