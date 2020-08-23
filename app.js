@@ -4,11 +4,14 @@ let config = require('./config');
 let exec = require('child_process').exec;
 let crypto = require('crypto');
 let fs = require('fs');
+let nodemailer = require("nodemailer");
 
 // 默认clone路径
 let gitClonePath = './';
 // 默认端口
 let listenPort = 80;
+// stmp相关
+let smtpTransporter = null;
 
 /**
  * 初始化配置
@@ -16,6 +19,17 @@ let listenPort = 80;
 let initConfig = function() {
     gitClonePath = config['clone_path'] || gitClonePath;
     listenPort = config['listen_port'] || listenPort;
+    if(config['smtp']) {
+        smtpTransporter = nodemailer.createTransport({
+            host: config['smtp']['host'],
+            port: config['smtp']['port'],
+            secure: false, 
+            auth: {
+                user: config['smtp']['user'],
+                pass: config['smtp']['pass']
+            }
+        });
+    }
 };
 
 /**
@@ -57,6 +71,24 @@ let simpleExec = function(command) {
         });
     });
 };
+
+/**
+ * @param recipient 收件人邮箱
+ * @param title 标题
+ * @param content 内容
+ */
+let sendEmail = async function(recipient, title, content) {
+    if(!smtpTransporter || !recipient) {
+        return
+    }
+
+    await smtpTransporter.sendMail({
+        from: '"node-github-hooks" <' + config['smtp']['email'] + '>',
+        to: recipient,
+        subject: title,
+        text: content
+    });
+}
 
 /**
  * 拉取远程仓库
@@ -128,6 +160,7 @@ http.createServer((req, res) => {
             }
 
             log('仓库%s部署完毕:)', repoName);
+            sendEmail(config.repo[repoName]['recipient'], 'node-github-hooks', '仓库' + repoName + '部署完成:)')
             log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
         })();
     });

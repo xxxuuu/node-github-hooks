@@ -8,5 +8,8 @@
     "pro": "pm2 start app.js -n webhook -o ./log/log.log -e ./log/error.log"
   },
   "author": "XUQING",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "nodemailer": "^6.4.11"
+  }
 }

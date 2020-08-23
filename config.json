@@ -5,7 +5,15 @@
   "repo": {
     "xxxuuu.github.io": {
       "branch": "master",
-      "shell": "./run.sh"
+      "shell": "./run.sh",
+      "recipient": "example@qq.com"
     }
+  },
+  "smtp": {
+    "host": "smtp.qq.com",
+    "port": 587,
+    "email": "example@qq.com",
+    "user": "",
+    "pass": ""
   }
 }
