@@ -23,12 +23,12 @@ let initConfig = function() {
  * @param msg 日志格式化信息
  * @param args 参数
  */
-let log = function(msg, args) {
+let log = function(msg, ...args) {
     if(!args) {
         args = []
     }
     args.unshift(new Date().toLocaleString())
-    console.log('[%s] ' + msg, args);
+    console.log('[%s] ' + msg, ...args);
 };
 
 /**
