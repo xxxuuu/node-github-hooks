@@ -19,6 +19,19 @@ let initConfig = function() {
 };
 
 /**
+ * 格式化日志
+ * @param msg 日志格式化信息
+ * @param args 参数
+ */
+let log = function(msg, args) {
+    if(!args) {
+        args = []
+    }
+    args.unshift(new Date().toLocaleString())
+    console.log('[%s] ' + msg, args);
+};
+
+/**
  * SHA1加密
  * @param str 待加密字符串
  * @param token 密钥
@@ -36,27 +49,14 @@ let simpleExec = function(command) {
     return new Promise((resolve, reject) => {
         exec(command, (err, stdout, stderr) => {
             if (err) {
-                console.log(stderr);
+                log(stderr);
             } else {
-                console.log(stdout);
+                log(stdout);
             }
             resolve();
         });
     });
 };
-
-/**
- * 格式化日志
- * @param msg 日志格式化信息
- * @param args 参数
- */
-let log = function(msg, args) {
-    if(!args) {
-        args = []
-    }
-    args.unshift(new Date().toLocaleString())
-    console.log('[%s] ' + msg, args);
-}
 
 /**
  * 拉取远程仓库
