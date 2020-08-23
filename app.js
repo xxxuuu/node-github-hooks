@@ -103,12 +103,12 @@ http.createServer((req, res) => {
 
         // 校验密钥
         if(secret !== ('sha1='+ sha1(data, config['secret_token']))) {
-            res.end();
+            return;
         }
 
         // 配置中没有这个仓库
         if(!config.repo[repoName]) {
-            res.end();
+            return;
         }
 
         (async () => {
