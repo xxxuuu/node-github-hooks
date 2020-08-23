@@ -2,10 +2,10 @@
   "name": "node-github-hooks",
   "version": "1.0.0",
   "description": "simple github webhooks server",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "server": "node index.js",
-    "pro": "pm2 start index.js -n webhook -o ./log/log.log -e ./log/error.log"
+    "server": "node app.js",
+    "pro": "pm2 start app.js -n webhook -o ./log/log.log -e ./log/error.log"
   },
   "author": "XUQING",
   "license": "MIT"
