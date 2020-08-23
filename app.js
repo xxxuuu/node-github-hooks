@@ -88,7 +88,7 @@ let sendEmail = async function(recipient, title, content) {
         subject: title,
         text: content
     });
-}
+};
 
 /**
  * 拉取远程仓库
@@ -160,7 +160,7 @@ http.createServer((req, res) => {
             }
 
             log('仓库%s部署完毕:)', repoName);
-            sendEmail(config.repo[repoName]['recipient'], 'node-github-hooks', '仓库' + repoName + '部署完成:)')
+            sendEmail(config.repo[repoName]['recipient'], 'node-github-hooks', '仓库' + repoName + '部署完成:)');
             log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
         })();
     });
