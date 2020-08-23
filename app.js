@@ -46,6 +46,19 @@ let simpleExec = function(command) {
 };
 
 /**
+ * 格式化日志
+ * @param msg 日志格式化信息
+ * @param args 参数
+ */
+let log = function(msg, args) {
+    if(!args) {
+        args = []
+    }
+    args.unshift(new Date().toLocaleString())
+    console.log('[%s] ' + msg, args);
+}
+
+/**
  * 拉取远程仓库
  * @param clonePath 本地clone地址
  * @param cloneUrl 远程仓库clone url
@@ -99,25 +112,25 @@ http.createServer((req, res) => {
         }
 
         (async () => {
-            console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
-            console.log('[%s] %s正在部署...', new Date().toLocaleString(), repoName);
+            log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+            log('%s正在部署...', repoName);
 
             // 拉取
-            console.log('[%s] 拉取项目中...', new Date().toLocaleString());
+            log('拉取项目中...');
             await cloneRepo(gitClonePath, cloneUrl, repoName, config.repo[repoName]['branch']);
-            console.log('[%s] 拉取完毕', new Date().toLocaleString());
+            log('拉取完毕');
 
             // 执行shell
             if(config.repo[repoName]['shell']) {
-                console.log('[%s] 执行shell %s中...', new Date().toLocaleString(), config.repo[repoName]['shell']);
+                log('执行shell %s中...', config.repo[repoName]['shell']);
                 await simpleExec('sh ' + config.repo[repoName]['shell']);
-                console.log('[%s] 执行shell 完毕', new Date().toLocaleString());
+                log('执行shell 完毕');
             }
 
-            console.log('[%s] 仓库%s部署完毕:)', new Date().toLocaleString(), repoName);
-            console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
+            log('仓库%s部署完毕:)', repoName);
+            log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
         })();
     });
     res.end();
 }).listen(listenPort);
-
+log('node-github-hooks running...');
